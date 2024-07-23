@@ -34,9 +34,10 @@ public class Server {
                        writer.write(response);
                        writer.newLine();
                        writer.flush();
-                   }
+                    }
+               }catch (NullPointerException e){
+                   e.printStackTrace();
                }
-
 
        } catch (IOException e){
            throw new RuntimeException(e);
