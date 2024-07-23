@@ -1,5 +1,6 @@
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Server {
 
@@ -8,7 +9,21 @@ public class Server {
         ServerSocket server = new ServerSocket( 8000 );
         System.out.println("Start Server");
 
-        server.accept();
+        Socket socket = server.accept();
         System.out.println("Client connection");
+
+
+        BufferedWriter writer =
+                new BufferedWriter(
+                new OutputStreamWriter(socket.getOutputStream()));
+        writer.write("Добро пожаловать");
+        writer.newLine();
+        writer.flush();
+
+        writer.close();
+        socket.close();
+        server.close();
+
+
     }
 }
